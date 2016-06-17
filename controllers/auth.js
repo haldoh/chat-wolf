@@ -59,3 +59,14 @@ module.exports.checkUserToken = function (req, res, next) {
 		});
 	}
 };
+
+/* Generate temporary chat token
+ */
+module.exports.getTempChatToken = function (req, res, next) {
+	// Generate token
+	return auth.generateUserToken(req.tokenUser, function (token) {
+		return res.send({
+			token: token
+		});
+	});	
+};

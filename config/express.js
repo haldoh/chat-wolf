@@ -67,9 +67,9 @@ module.exports = function () {
 	 */
 	var server = require('http').createServer(app);
 	server.listen(config.port);
-	console.log("Environment: " + config.mode);
-	console.log("HTTP server listening on port " + config.port);
+	logger.info("Environment: " + config.mode);
+	logger.info("HTTP server listening on port " + config.port);
 
-	// Return the express app
-	return app;
+	// Return the created server
+	return server;
 };

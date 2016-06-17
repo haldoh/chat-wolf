@@ -23,8 +23,9 @@ var config = {
 		endpoint: endpoint.local,
 		port: 3300,
 		jwtSecret: 'localJwtSecret',
+		jwtChatSecret: 'localJwtChatSecret',
 		morgan: 'REQ :remote-addr - :remote-user  ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time',
-		token: 'localhost_chat_token',
+		token: 'localhost_web_token',
 		auth: {
 			endpoint: 'http://localhost:3000',
 			platform: 'chat-wolf',
@@ -38,6 +39,7 @@ var config = {
 		endpoint: endpoint.heroku,
 		port: process.env.PORT,
 		jwtSecret: process.env.JWT_SECRET,
+		jwtChatSecret: process.env.JWT_CHAT_SECRET,
 		morgan: 'REQ :remote-addr - :remote-user  ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time',
 		token: process.env.CHAT_TOKEN,
 		auth: {

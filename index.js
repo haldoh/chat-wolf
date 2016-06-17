@@ -12,7 +12,10 @@
 // Logger initialization
 require('./config/logger').initialize();
 
-// Create app
-var app = require('./config/express')();
+// Configure express app and server
+var server = require('./config/express')();
 
-module.exports = app;
+// Configure socket.io
+require('./config/socketio.js')(server);
+
+module.exports = server;

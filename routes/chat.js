@@ -17,6 +17,9 @@ var auth = require('../controllers/auth');
 // All routes require api tokens
 router.use(auth.checkApiToken);
 
+router.route('/chat_token')
+	// GET - Get a temporary token to authenticate chat socket
+	.get(auth.checkUserToken, auth.getTempChatToken);
 
 
 module.exports = router;
