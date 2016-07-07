@@ -24,7 +24,7 @@ module.exports = function (server) {
 	var io = socketio.listen(server);
 
 	socketAuth(io, {
-		authenticate: authenticate, 
+		authenticate: authenticate,
 		postAuthenticate: postAuthenticate,
 		timeout: 1000
 	});
@@ -35,19 +35,36 @@ module.exports = function (server) {
 		logger.debug('Connection from socket: ' + socket.id);
 
 		// Client registration
-		socket.on('clientRegister', function (clientId) {
-
-		});
+		// socket.on('clientRegister', function (clientId) {
+		// });
 
 		// Direct message between clients
 		socket.on('directMessage', function (senderId, recipientId, message) {
+			socket.broadcast.to(recipientId).emit('directMessage', senderId, message);
+		});
 
+		// Join a room
+		socket.on('joinRoom', function (roomId) {
+			logger.debug('Socket ' + socket.id + ' joining room ' + roomId);
+			socket.join(roomId);
+			io.to(roomId).emit('joinedRoom', socket.id);
+		});
+
+		// Leave a room
+		socket.on('leaveRoom', function (roomId) {
+			logger.debug('Socket ' + socket.id + ' leaving room ' + roomId);
+			socket.leave(roomId);
+			io.to(roomId).emit('leftRoom', socket.id);
+		});
+
+		// Message to a room
+		socket.on('messageRoom', function (roomId, senderId, message) {
+			io.to(roomId).emit('messageRoom', senderId, message);
 		});
 
 		// Disconnection management
-		socket.on('disconnect', function () {
-
-		});
+		// socket.on('disconnect', function () {
+		// });
 
 	});
 };

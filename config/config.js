@@ -26,6 +26,10 @@ var config = {
 		jwtChatSecret: 'localJwtChatSecret',
 		morgan: 'REQ :remote-addr - :remote-user  ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time',
 		token: 'localhost_web_token',
+		mongoChat: {
+			fullUri: 'mongodb://localhost:27017/chat',
+			name: 'chat'
+		},
 		auth: {
 			endpoint: 'http://localhost:3000',
 			platform: 'chat-wolf',
@@ -42,6 +46,10 @@ var config = {
 		jwtChatSecret: process.env.JWT_CHAT_SECRET,
 		morgan: 'REQ :remote-addr - :remote-user  ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time',
 		token: process.env.CHAT_TOKEN,
+		mongoChat: {
+			fullUri: process.env.MONGODB_URI,
+			name: 'chat'
+		},
 		auth: {
 			endpoint: 'https://auth-wolf.herokuapp.com',
 			platform: process.env.PLATFORM,

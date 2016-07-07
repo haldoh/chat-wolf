@@ -12,6 +12,9 @@
 // Logger initialization
 require('./config/logger').initialize();
 
+// Connect to MongoDB and setup mongoose
+require('./config/mongoose')();
+
 // Configure express app and server
 var server = require('./config/express')();
 
